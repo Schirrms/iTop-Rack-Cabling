@@ -9,14 +9,14 @@ SetupWebPage::AddModule(
 	array(
 		// Identification
 		//
-		'label' => 'Rack to rack and cable management',
+		'label' => 'Rack to rack Patch Panel and cable management',
 		'category' => 'business',
 
 		// Setup
 		//
 		'dependencies' => array(
 			'itop-config-mgmt/2.5.0',
-			'molkobain-datacenter-view/2.4.0',
+			'molkobain-datacenter-view/2.0.0',
 			'schirrms-comm-interface/0.6.6'
 		),
 		'mandatory' => false,
