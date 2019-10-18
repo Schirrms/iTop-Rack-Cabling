@@ -17,7 +17,7 @@ SetupWebPage::AddModule(
 		'dependencies' => array(
 			'itop-config-mgmt/2.5.0',
 			'molkobain-datacenter-view/2.4.0',
-			'schirrms-generic-comm-interface/0.6.6'
+			'schirrms-comm-interface/0.6.6'
 		),
 		'mandatory' => false,
 		'visible' => true,
