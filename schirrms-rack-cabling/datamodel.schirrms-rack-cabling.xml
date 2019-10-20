@@ -495,6 +495,19 @@
 				</search>
 			</presentation>
 		</class>
+		<!--
+		Thanks to VDumas (again), the correct way to extend an AttributeEnum field
+		-->
+		<class id="Model" _delta="must_exist">
+			<fields>
+				<field id="type" xsi:type="AttributeEnum" _delta="must_exist">
+					<values>
+						<value id="PatchPanel" _delta="define">PatchPanel</value>
+					</values>
+				</field>
+			</fields>
+		</class>
+	</classes>
 	</classes>
 	<menus>
 		<menu id="ConfigManagementOverview" xsi:type="DashboardMenuNode" _delta="must_exist">
