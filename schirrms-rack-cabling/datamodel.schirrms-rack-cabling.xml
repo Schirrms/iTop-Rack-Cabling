@@ -471,9 +471,59 @@
 					<target_attcode>name</target_attcode>
 				</field>
 			</fields>
+			<presentation>
+				<details>
+					<items>
+						<item id="cable_id" _delta="define">
+							<rank>120</rank>
+						</item>
+					</items>
+				</details>
+				<list>
+					<items>
+						<item id="cable_id" _delta="define">
+							<rank>120</rank>
+						</item>
+					</items>
+				</list>
+				<search>
+					<items>
+						<item id="cable_id" _delta="define">
+							<rank>120</rank>
+						</item>
+					</items>
+				</search>
+			</presentation>
 		</class>
 	</classes>
 	<menus>
+		<menu id="ConfigManagementOverview" xsi:type="DashboardMenuNode" _delta="must_exist">
+			<rank>1</rank>
+			<parent>ConfigManagement</parent>
+			<definition>
+				<layout>DashboardLayoutOneCol</layout>
+				<title/>
+				<cells>
+					<cell id="4" _delta="must_exist"> <!-- Dashboard -> Miscellaneous -->
+						<rank>0</rank>
+						<dashlets>
+							<dashlet id="87" xsi:type="DashletBadge" _delta="define">
+								<rank>14</rank>
+								<class>PatchPanel</class>
+							</dashlet>
+							<dashlet id="88" xsi:type="DashletBadge" _delta="define">
+								<rank>15</rank>
+								<class>PatchPanelPort</class>
+							</dashlet>
+							<dashlet id="99" xsi:type="DashletBadge" _delta="define">
+								<rank>8</rank>
+								<class>PatchCable</class>
+							</dashlet>
+						</dashlets>
+					</cell>
+				</cells>
+			</definition>
+		</menu>
 	</menus>
 	<user_rights>
 		<groups>
