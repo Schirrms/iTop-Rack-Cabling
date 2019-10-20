@@ -188,10 +188,6 @@
 					<is_null_allowed>false</is_null_allowed>
 					<on_target_delete>DEL_MANUAL</on_target_delete>
 				</field>
-				<field id="physcommtype_type" xsi:type="AttributeExternalField">
-					<extkey_attcode>physcommtype_id</extkey_attcode>
-					<target_attcode>type</target_attcode>
-				</field>
 				<field id="remotebackpanelport_id" xsi:type="AttributeExternalKey">
 					<sql>remotebackpanelport_id</sql>
 					<target_class>PatchPanelPort</target_class>
