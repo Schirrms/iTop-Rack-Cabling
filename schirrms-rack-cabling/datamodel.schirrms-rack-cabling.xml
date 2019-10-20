@@ -508,7 +508,6 @@
 			</fields>
 		</class>
 	</classes>
-	</classes>
 	<menus>
 		<menu id="ConfigManagementOverview" xsi:type="DashboardMenuNode" _delta="must_exist">
 			<rank>1</rank>
