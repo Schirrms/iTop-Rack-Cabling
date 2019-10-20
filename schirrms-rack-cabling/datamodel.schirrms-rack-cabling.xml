@@ -169,8 +169,6 @@
 				<reconciliation>
 					<attributes>
 						<attribute id="name"/>
-						<attribute id="org_id"/>
-						<attribute id="organization_name"/>
 						<attribute id="patchpanel_id"/>
 					</attributes>
 				</reconciliation>
@@ -187,10 +185,9 @@
 					<target_class>PatchPanelPort</target_class>
 					<is_null_allowed>true</is_null_allowed>
 					<on_target_delete>DEL_MANUAL</on_target_delete>
-					<filter><![CDATA[SELECT PatchPanelPort WHERE remotebackpanelport_id = '' AND id != :this->id AND physcommtype_id = :this->physcommtype_id AND location_id = :this->location_id]]></filter>
+					<filter><![CDATA[SELECT PatchPanelPort WHERE remotebackpanelport_id = '' AND id != :this->id AND physcommtype_id = :this->physcommtype_id]]></filter>
 					<dependencies>
 						<attribute id="physcommtype_id" />
-						<attribute id="location_id" />
 					</dependencies>
 				</field>
 				<field id="remotebackpanelport_name" xsi:type="AttributeExternalField">
@@ -204,7 +201,7 @@
 						<item id="name">
 							<rank>10</rank>
 						</item>
-						<item id="description">
+						<item id="comment">
 							<rank>20</rank>
 						</item>
 						<item id="patchpanel_id">
