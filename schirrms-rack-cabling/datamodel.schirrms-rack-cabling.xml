@@ -372,7 +372,7 @@
 						<item id="length">
 							<rank>40</rank>
 						</item>
-						<item id="straigth-crossed">
+						<item id="straight-crossed">
 							<rank>50</rank>
 						</item>
 						<item id="physcommtype_a_id">
@@ -394,17 +394,29 @@
 						<item id="name">
 							<rank>10</rank>
 						</item>
-						<item id="patchpanel_id">
+						<item id="location_id">
+							<rank>15</rank>
+						</item>
+						<item id="color">
 							<rank>30</rank>
 						</item>
-						<item id="physcommtype_id">
+						<item id="length">
 							<rank>40</rank>
 						</item>
-						<item id="remotebackpanelport_id">
+						<item id="straight-crossed">
 							<rank>50</rank>
 						</item>
-						<item id="cable_id">
+						<item id="physcommtype_a_id">
 							<rank>60</rank>
+						</item>
+						<item id="remote_a_id">
+							<rank>70</rank>
+						</item>
+						<item id="physcommtype_b_id">
+							<rank>80</rank>
+						</item>
+						<item id="remote_b_id">
+							<rank>90</rank>
 						</item>
 					</items>
 				</search>
@@ -413,17 +425,29 @@
 						<item id="name">
 							<rank>10</rank>
 						</item>
-						<item id="patchpanel_id">
+						<item id="location_id">
+							<rank>15</rank>
+						</item>
+						<item id="color">
 							<rank>30</rank>
 						</item>
-						<item id="physcommtype_id">
+						<item id="length">
 							<rank>40</rank>
 						</item>
-						<item id="remotebackpanelport_id">
+						<item id="straight-crossed">
 							<rank>50</rank>
 						</item>
-						<item id="cable_id">
+						<item id="physcommtype_a_id">
 							<rank>60</rank>
+						</item>
+						<item id="remote_a_id">
+							<rank>70</rank>
+						</item>
+						<item id="physcommtype_b_id">
+							<rank>80</rank>
+						</item>
+						<item id="remote_b_id">
+							<rank>90</rank>
 						</item>
 					</items>
 				</list>
@@ -441,9 +465,8 @@
 					<target_class>PatchCable</target_class>
 					<is_null_allowed>true</is_null_allowed>
 					<on_target_delete>DEL_MANUAL</on_target_delete>
-					<filter><![CDATA[SELECT PatchCable WHERE (remote_a_id = '' OR remote_b_id = '') AND location_id = :this->location_id]]></filter>
+					<filter><![CDATA[SELECT PatchCable WHERE (remote_a_id = '' OR remote_b_id = '')]]></filter>
 					<dependencies>
-						<attribute id="location_id" />
 					</dependencies>
 				</field>
 				<field id="cable_name" xsi:type="AttributeExternalField" _delta="define">
