@@ -197,10 +197,6 @@
 					<extkey_attcode>remotebackpanelport_id</extkey_attcode>
 					<target_attcode>name</target_attcode>
 				</field>
-				<field id="remotebackpanelport_name" xsi:type="AttributeExternalField">
-					<extkey_attcode>remotebackpanelport_id</extkey_attcode>
-					<target_attcode>name</target_attcode>
-				</field>
 			</fields>
 			<presentation>
 				<details>
