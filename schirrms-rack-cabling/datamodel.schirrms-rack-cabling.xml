@@ -220,10 +220,13 @@
 				</details>
 				<search>
 					<items>
-						<item id="name">
+						<item id="friendlyname">
 							<rank>10</rank>
 						</item>
 						<item id="patchpanel_id">
+							<rank>20</rank>
+						</item>
+						<item id="name">
 							<rank>30</rank>
 						</item>
 						<item id="physcommtype_id">
@@ -239,10 +242,13 @@
 				</search>
 				<list>
 					<items>
-						<item id="name">
+						<item id="friendlyname">
 							<rank>10</rank>
 						</item>
 						<item id="patchpanel_id">
+							<rank>20</rank>
+						</item>
+						<item id="name">
 							<rank>30</rank>
 						</item>
 						<item id="physcommtype_id">
@@ -306,7 +312,7 @@
 				<field id="remote_a_id" xsi:type="AttributeExternalKey">
 					<sql>remote_a_id</sql>
 					<target_class>GenericCommPhysInterface</target_class>
-					<is_null_allowed>false</is_null_allowed>
+					<is_null_allowed>true</is_null_allowed>
 					<on_target_delete>DEL_MANUAL</on_target_delete>
 				</field>
 				<field id="remote_a_name" xsi:type="AttributeExternalField">
@@ -326,7 +332,7 @@
 				<field id="remote_b_id" xsi:type="AttributeExternalKey">
 					<sql>remote_b_id</sql>
 					<target_class>GenericCommPhysInterface</target_class>
-					<is_null_allowed>false</is_null_allowed>
+					<is_null_allowed>true</is_null_allowed>
 					<on_target_delete>DEL_MANUAL</on_target_delete>
 				</field>
 				<field id="remote_b_name" xsi:type="AttributeExternalField">
@@ -356,6 +362,9 @@
 					<items>
 						<item id="name">
 							<rank>10</rank>
+						</item>
+						<item id="org_id">
+							<rank>12</rank>
 						</item>
 						<item id="location_id">
 							<rank>15</rank>
