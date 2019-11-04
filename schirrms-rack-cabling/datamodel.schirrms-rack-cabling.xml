@@ -162,7 +162,7 @@
 				<db_final_class_field/>
 				<naming>
 					<attributes>
-						<attribute id="connectableci_id"/>
+						<attribute id="connectableci_name"/>
 						<attribute id="name"/>
 					</attributes>
 				</naming>
@@ -171,7 +171,7 @@
 				<reconciliation>
 					<attributes>
 						<attribute id="name"/>
-						<attribute id="connectableci_id"/>
+						<attribute id="connectableci_name"/>
 					</attributes>
 				</reconciliation>
 			</properties>
