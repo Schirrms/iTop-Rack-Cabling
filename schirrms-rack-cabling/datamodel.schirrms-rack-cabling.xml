@@ -176,8 +176,8 @@
 				</reconciliation>
 			</properties>
 			<fields>
-				<field id="patchpanel_id" xsi:type="AttributeExternalKey">
-					<sql>patchpanel_id</sql>
+				<field id="connectableci_id" xsi:type="AttributeExternalKey">
+					<sql>connectableci_id</sql>
 					<target_class>PatchPanel</target_class>
 					<is_null_allowed>false</is_null_allowed>
 					<on_target_delete>DEL_AUTO</on_target_delete>
