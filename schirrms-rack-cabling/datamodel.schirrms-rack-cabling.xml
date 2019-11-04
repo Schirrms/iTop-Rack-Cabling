@@ -152,7 +152,7 @@
 			</relations>
 		</class>
 		<class id="PatchPanelPort" _delta="define">
-			<parent>GenericCommPhysInterface</parent>
+			<parent>GenericCommLayer1Interface</parent>
 			<properties>
 				<category>bizmodel,searchable</category>
 				<abstract>false</abstract>
@@ -182,6 +182,10 @@
 					<is_null_allowed>false</is_null_allowed>
 					<on_target_delete>DEL_AUTO</on_target_delete>
 				</field>
+				<field id="patchpanel_name" xsi:type="AttributeExternalField">
+					<extkey_attcode>patchpanel_id</extkey_attcode>
+					<target_attcode>name</target_attcode>
+				</field>
 				<field id="remotebackpanelport_id" xsi:type="AttributeExternalKey">
 					<sql>remotebackpanelport_id</sql>
 					<target_class>PatchPanelPort</target_class>
@@ -194,6 +198,16 @@
 				</field>
 				<field id="remotebackpanelport_name" xsi:type="AttributeExternalField">
 					<extkey_attcode>remotebackpanelport_id</extkey_attcode>
+					<target_attcode>name</target_attcode>
+				</field>
+				<field id="physcommtype_id" xsi:type="AttributeExternalKey">
+					<sql>physcommtype_id</sql>
+					<target_class>GenericPhysCommConnector</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+				</field>
+				<field id="physcommtype_name" xsi:type="AttributeExternalField">
+					<extkey_attcode>physcommtype_id</extkey_attcode>
 					<target_attcode>name</target_attcode>
 				</field>
 			</fields>
