@@ -73,9 +73,11 @@
 						<item id="rack_id">
 							<rank>60</rank>
 						</item>
+						<!-- Depends on molkobains datacenter view 
 						<item id="position_v">
 							<rank>70</rank>
 						</item>
+						-->
 						<item id="nb_u">
 							<rank>80</rank>
 						</item>
@@ -464,7 +466,7 @@
 			</relations>
 		</class>
 		<!-- here comes modifications on existing classes -->
-		<class id="GenericCommPhysInterface" _delta="must_exist">
+		<class id="GenericCommLayer1Interface" _delta="must_exist">
 			<fields>
 				<field id="cable_id" xsi:type="AttributeExternalKey" _delta="define">
 					<sql>cable_id</sql>

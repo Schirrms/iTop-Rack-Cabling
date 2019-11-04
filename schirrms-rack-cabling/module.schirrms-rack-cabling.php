@@ -5,7 +5,7 @@
 
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'schirrms-rack-cabling/0.1.0',
+	'schirrms-rack-cabling/0.2.0',
 	array(
 		// Identification
 		//
@@ -16,8 +16,8 @@ SetupWebPage::AddModule(
 		//
 		'dependencies' => array(
 			'itop-config-mgmt/2.5.0',
-			'molkobain-datacenter-view/1.5.0',
-			'schirrms-comm-interface/0.6.6'
+			'itop-datacenter-mgmt/2.5.0',
+			'schirrms-generic-connection/0.7.0'
 		),
 		'mandatory' => false,
 		'visible' => true,
