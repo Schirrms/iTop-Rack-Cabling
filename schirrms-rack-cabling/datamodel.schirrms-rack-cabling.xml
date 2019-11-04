@@ -303,7 +303,7 @@
 				</field>
 				<field id="physcommtype_a_id" xsi:type="AttributeExternalKey">
 					<sql>physcommtype_a_id</sql>
-					<target_class>GenericPhysCommConnector</target_class>
+					<target_class>GenericCommLayer1Interface</target_class>
 					<is_null_allowed>false</is_null_allowed>
 					<on_target_delete>DEL_MANUAL</on_target_delete>
 				</field>
@@ -323,7 +323,7 @@
 				</field>
 				<field id="physcommtype_b_id" xsi:type="AttributeExternalKey">
 					<sql>physcommtype_b_id</sql>
-					<target_class>GenericPhysCommConnector</target_class>
+					<target_class>GenericCommLayer1Interface</target_class>
 					<is_null_allowed>false</is_null_allowed>
 					<on_target_delete>DEL_MANUAL</on_target_delete>
 				</field>
