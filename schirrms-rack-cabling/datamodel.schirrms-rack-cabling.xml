@@ -270,6 +270,114 @@
 				</list>
 			</presentation>
 			<methods>
+				<method id="ConnectBackPanelRemotePort">
+					<static>false</static>
+					<access>protected</access>
+					<type>Overload-cmdbAbstractObject</type>
+					<code><![CDATA[ protected function ConnectBackPanelRemotePort()
+						{
+							// print "ConnectBackPanelRemotePort begins<BR>";
+							if (!(empty($this->Get('remotebackpanelport_id'))))
+							{
+								// print "remotebackpanelport_name = ".$this->Get('remotebackpanelport_name')."<br>";
+								// try to get the port this port is connected to
+								$oDevice = MetaModel::GetObject('GenericCommLayer1Interface', $this->Get('remotebackpanelport_id'));
+								if (is_object($oDevice) && (get_class($oDevice) == 'GenericCommLayer1Interface'))
+								{
+									// print "Test Object OK<br>";
+									$sOQL = "SELECT GenericCommLayer1Interface WHERE id = :device";
+									$oConnectionSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL),
+										array(),
+										array(
+											'device' => $this->Get('remotebackpanelport_id'),
+										)
+									);
+
+									// There should be one link - do it in a safe manner anyway
+									while ($oConnection = $oConnectionSet->Fetch())
+									{
+										// print "Updating : '".$oConnection->Get('name')."'<br>";
+										$oConnection->Set('remotebackpanelport_id', $this->GetKey());
+										// $oConnection->Set('connected_to_device_id', $this->Get('connectableci_id'));
+										$oConnection->DBUpdate();
+									}
+								}
+							}
+							// print "ConnectBackPanelRemotePort ends<BR>";
+						}
+					]]></code>
+				</method>
+				<method id="DisconnectBackPanelRemotePort">
+					<static>false</static>
+					<access>protected</access>
+					<type>Overload-cmdbAbstractObject</type>
+					<code><![CDATA[ protected function DisconnectBackPanelRemotePort()
+						{
+							// print "DisconnectBackPanelRemotePort begins<BR>";
+							if (!(empty($this->GetOriginal('remotebackpanelport_id'))))
+							{
+								// print "was connected_to_name = ".$this->GetOriginal('remotebackpanelport_id')."<br>";
+								// try to get the port this port was connected to
+								// This one was hard to find : adding false in the next request allow a null answer
+								// witch is OK as we have to test after operations anyway
+								// see also $$mustBeFound value for MetaModel::GetObject
+								$oDevice = MetaModel::GetObject('GenericCommLayer1Interface', $this->GetOriginal('remotebackpanelport_id'), false);
+								if (is_object($oDevice) && (get_class($oDevice) == 'GenericCommLayer1Interface'))
+								{
+									// print "Test Object OK<br>";
+									$sOQL = "SELECT GenericCommLayer1Interface WHERE remotebackpanelport_id = :device";
+									$oConnectionSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL),
+										array(),
+										array(
+											'device' => $this->GetKey(),
+										)
+									);
+
+									// There should be one link - do it in a safe manner anyway
+									while ($oConnection = $oConnectionSet->Fetch())
+									{
+										// print "Updating : '".$oConnection->Get('name')."'<br>";
+										$oConnection->Set('remotebackpanelport_id', '');
+										// $oConnection->Set('connected_to_device_id', '');
+										$oConnection->DBUpdate();
+									}
+								}
+							}
+							// print "DisconnectBackPanelRemotePort ends<BR>";
+						}
+					]]></code>
+				</method>
+				<method id="AfterInsert">
+					<static>false</static>
+					<access>protected</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[	protected function AfterInsert()
+						{
+							$this->ConnectBackPanelRemotePort();
+							parent::AfterInsert();
+				}]]></code>
+				</method>
+				<method id="OnUpdate">
+					<static>false</static>
+					<access>protected</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[	protected function OnUpdate()
+						{
+							$this->DisconnectBackPanelRemotePort();
+							$this->ConnectBackPanelRemotePort();
+							parent::OnUpdate();
+				}]]></code>
+				</method>
+				<method id="OnDelete">
+					<static>false</static>
+					<access>protected</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[	protected function OnDelete()
+						{
+							$this->DisconnectBackPanelRemotePort();
+							parent::OnDelete();
+				}]]></code>
+				</method>
 			</methods>
 			<relations>
 			</relations>
