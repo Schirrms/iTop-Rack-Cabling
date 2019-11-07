@@ -281,17 +281,12 @@
 							{
 								// print "remotebackpanelport_name = ".$this->Get('remotebackpanelport_name')."<br>";
 								// try to get the port this port is connected to
-								$oDevice = MetaModel::GetObject('GenericCommLayer1Interface', $this->Get('remotebackpanelport_id'));
-								if (is_object($oDevice) && (get_class($oDevice) == 'GenericCommLayer1Interface'))
+								$oDevice = MetaModel::GetObject('PatchPanelPort', $this->Get('remotebackpanelport_id'));
+								if (is_object($oDevice) && (get_class($oDevice) == 'PatchPanelPort'))
 								{
 									// print "Test Object OK<br>";
-									$sOQL = "SELECT GenericCommLayer1Interface WHERE id = :device";
-									$oConnectionSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL),
-										array(),
-										array(
-											'device' => $this->Get('remotebackpanelport_id'),
-										)
-									);
+									$sOQL = "SELECT PatchPanelPort WHERE id = :device";
+									$oConnectionSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL), array(), array('device' => $this->Get('remotebackpanelport_id'),));
 
 									// There should be one link - do it in a safe manner anyway
 									while ($oConnection = $oConnectionSet->Fetch())
@@ -321,17 +316,12 @@
 								// This one was hard to find : adding false in the next request allow a null answer
 								// witch is OK as we have to test after operations anyway
 								// see also $$mustBeFound value for MetaModel::GetObject
-								$oDevice = MetaModel::GetObject('GenericCommLayer1Interface', $this->GetOriginal('remotebackpanelport_id'), false);
-								if (is_object($oDevice) && (get_class($oDevice) == 'GenericCommLayer1Interface'))
+								$oDevice = MetaModel::GetObject('PatchPanelPort', $this->GetOriginal('remotebackpanelport_id'), false);
+								if (is_object($oDevice) && (get_class($oDevice) == 'PatchPanelPort'))
 								{
 									// print "Test Object OK<br>";
-									$sOQL = "SELECT GenericCommLayer1Interface WHERE remotebackpanelport_id = :device";
-									$oConnectionSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL),
-										array(),
-										array(
-											'device' => $this->GetKey(),
-										)
-									);
+									$sOQL = "SELECT PatchPanelPort WHERE remotebackpanelport_id = :device";
+									$oConnectionSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL), array(), array('device' => $this->GetKey(),));
 
 									// There should be one link - do it in a safe manner anyway
 									while ($oConnection = $oConnectionSet->Fetch())
