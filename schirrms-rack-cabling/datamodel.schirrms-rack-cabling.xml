@@ -418,6 +418,10 @@
 					<target_class>GenericCommLayer1Interface</target_class>
 					<is_null_allowed>true</is_null_allowed>
 					<on_target_delete>DEL_MANUAL</on_target_delete>
+					<filter><![CDATA[SELECT PatchPanelPort WHERE  cable_id = '' AND physcommtype_id = :this->physcommtype_a_id UNION SELECT GenericCommPhysInterface WHERE  cable_id = '' AND physcommtype_id = :this->physcommtype_a_id]]></filter>
+					<dependencies>
+						<attribute id="physcommtype_a_id" />
+					</dependencies>
 				</field>
 				<field id="remote_a_name" xsi:type="AttributeExternalField">
 					<extkey_attcode>remote_a_id</extkey_attcode>
@@ -438,6 +442,10 @@
 					<target_class>GenericCommLayer1Interface</target_class>
 					<is_null_allowed>true</is_null_allowed>
 					<on_target_delete>DEL_MANUAL</on_target_delete>
+					<filter><![CDATA[SELECT PatchPanelPort WHERE  cable_id = '' AND physcommtype_id = :this->physcommtype_b_id UNION SELECT GenericCommPhysInterface WHERE  cable_id = '' AND physcommtype_id = :this->physcommtype_b_id]]></filter>
+					<dependencies>
+						<attribute id="physcommtype_b_id" />
+					</dependencies>
 				</field>
 				<field id="remote_b_name" xsi:type="AttributeExternalField">
 					<extkey_attcode>remote_b_id</extkey_attcode>
