@@ -563,6 +563,149 @@
 				</list>
 			</presentation>
 			<methods>
+				<method id="ConnectCable">
+					<static>false</static>
+					<access>protected</access>
+					<type>Overload-cmdbAbstractObject</type>
+					<code><![CDATA[ protected function ConnectCable()
+						{
+							// print "ConnectCable begins<BR>";
+							// End side A
+							if (!(empty($this->Get('remote_a_id'))))
+							{
+								// print "remote_a_name = ".$this->Get('remote_a_name')."<br>";
+								// try to get the port this cable is connected to
+								$oDevice = MetaModel::GetObject('GenericCommLayer1Interface', $this->Get('remote_a_id'));
+								if (is_object($oDevice) && (get_class($oDevice) == 'PatchPanelPort' || get_class($oDevice) == 'GenericCommPhysInterface'))
+								{
+									// print "Test Object OK<br>";
+									$sOQL = "SELECT GenericCommLayer1Interface WHERE id = :device";
+									$oConnectionSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL), array(), array('device' => $this->Get('remote_a_id'),));
+
+									// There should be one link - do it in a safe manner anyway
+									while ($oConnection = $oConnectionSet->Fetch())
+									{
+										// print "Updating : '".$oConnection->Get('name')."'<br>";
+										$oConnection->Set('cable_id', $this->GetKey());
+										$oConnection->DBUpdate();
+									}
+								}
+							}
+							// End side B
+							if (!(empty($this->Get('remote_b_id'))))
+							{
+								// print "remote_b_name = ".$this->Get('remote_b_name')."<br>";
+								// try to get the port this cable is connected to
+								$oDevice = MetaModel::GetObject('GenericCommLayer1Interface', $this->Get('remote_b_id'));
+								if (is_object($oDevice) && (get_class($oDevice) == 'PatchPanelPort' || get_class($oDevice) == 'GenericCommPhysInterface'))
+								{
+									// print "Test Object OK<br>";
+									$sOQL = "SELECT GenericCommLayer1Interface WHERE id = :device";
+									$oConnectionSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL), array(), array('device' => $this->Get('remote_b_id'),));
+
+									// There should be one link - do it in a safe manner anyway
+									while ($oConnection = $oConnectionSet->Fetch())
+									{
+										// print "Updating : '".$oConnection->Get('name')."'<br>";
+										$oConnection->Set('cable_id', $this->GetKey());
+										$oConnection->DBUpdate();
+									}
+								}
+							}
+							// print "ConnectCable ends<BR>";
+						}
+					]]></code>
+				</method>
+				<method id="DisconnectCable">
+					<static>false</static>
+					<access>protected</access>
+					<type>Overload-cmdbAbstractObject</type>
+					<code><![CDATA[ protected function DisconnectCable()
+						{
+							// print "DisconnectCable begins<BR>";
+							// End side A
+							if (!(empty($this->GetOriginal('remote_a_id'))))
+							{
+								// print "was connected_to_name = ".$this->GetOriginal('remote_a_name')."<br>";
+								// try to get the port this cable was connected to
+								// This one was hard to find : adding false in the next request allow a null answer
+								// witch is OK as we have to test after operations anyway
+								// see also $$mustBeFound value for MetaModel::GetObject
+								$oDevice = MetaModel::GetObject('GenericCommLayer1Interface', $this->GetOriginal('remote_a_id'), false);
+								if (is_object($oDevice) && (get_class($oDevice) == 'PatchPanelPort' || get_class($oDevice) == 'GenericCommPhysInterface'))
+								{
+									// print "Test Object OK<br>";
+									$sOQL = "SELECT GenericCommLayer1Interface WHERE cable_id = :device";
+									$oConnectionSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL), array(), array('device' => $this->GetKey(),));
+
+									// There should be one link - do it in a safe manner anyway
+									while ($oConnection = $oConnectionSet->Fetch())
+									{
+										// print "Updating : '".$oConnection->Get('name')."'<br>";
+										$oConnection->Set('cable_id', '');
+										$oConnection->DBUpdate();
+									}
+								}
+							}
+							// End side B
+							if (!(empty($this->GetOriginal('remote_b_id'))))
+							{
+								// print "was connected_to_name = ".$this->GetOriginal('remote_b_name')."<br>";
+								// try to get the port this cable was connected to
+								// This one was hard to find : adding false in the next request allow a null answer
+								// witch is OK as we have to test after operations anyway
+								// see also $$mustBeFound value for MetaModel::GetObject
+								$oDevice = MetaModel::GetObject('GenericCommLayer1Interface', $this->GetOriginal('remote_b_id'), false);
+								if (is_object($oDevice) && (get_class($oDevice) == 'PatchPanelPort' || get_class($oDevice) == 'GenericCommPhysInterface'))
+								{
+									// print "Test Object OK<br>";
+									$sOQL = "SELECT GenericCommLayer1Interface WHERE cable_id = :device";
+									$oConnectionSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL), array(), array('device' => $this->GetKey(),));
+
+									// There should be one link - do it in a safe manner anyway
+									while ($oConnection = $oConnectionSet->Fetch())
+									{
+										// print "Updating : '".$oConnection->Get('name')."'<br>";
+										$oConnection->Set('cable_id', '');
+										$oConnection->DBUpdate();
+									}
+								}
+							}
+							// print "DisconnectCable ends<BR>";
+						}
+					]]></code>
+				</method>
+				<method id="AfterInsert">
+					<static>false</static>
+					<access>protected</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[	protected function AfterInsert()
+						{
+							$this->ConnectCable();
+							parent::AfterInsert();
+				}]]></code>
+				</method>
+				<method id="OnUpdate">
+					<static>false</static>
+					<access>protected</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[	protected function OnUpdate()
+						{
+							$this->DisconnectCable();
+							$this->ConnectCable();
+							parent::OnUpdate();
+				}]]></code>
+				</method>
+				<method id="OnDelete">
+					<static>false</static>
+					<access>protected</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[	protected function OnDelete()
+						{
+							$this->DisconnectCable();
+							parent::OnDelete();
+				}]]></code>
+				</method>
 			</methods>
 			<relations>
 			</relations>
