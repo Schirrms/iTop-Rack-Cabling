@@ -608,9 +608,32 @@
 				</search>
 			</presentation>
 		</class>
-		<!--
-		Thanks to VDumas (again), the correct way to extend an AttributeEnum field
-		-->
+		<class id="GenericCommPhysInterface" _delta="must_exist">
+			<presentation>
+				<details>
+					<items>
+						<item id="cable_id" _delta="define">
+							<rank>115</rank>
+						</item>
+					</items>
+				</details>
+				<list>
+					<items>
+						<item id="cable_id" _delta="define">
+							<rank>115</rank>
+						</item>
+					</items>
+				</list>
+				<search>
+					<items>
+						<item id="cable_id" _delta="define">
+							<rank>115</rank>
+						</item>
+					</items>
+				</search>
+			</presentation>
+		</class>
+		<!-- Thanks to VDumas (again), the correct way to extend an AttributeEnum field -->
 		<class id="Model" _delta="must_exist">
 			<fields>
 				<field id="type" xsi:type="AttributeEnum" _delta="must_exist">
