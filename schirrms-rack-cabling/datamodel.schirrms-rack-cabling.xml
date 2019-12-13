@@ -73,11 +73,6 @@
 						<item id="rack_id">
 							<rank>60</rank>
 						</item>
-						<!-- Depends on molkobains datacenter view 
-						<item id="position_v">
-							<rank>70</rank>
-						</item>
-						-->
 						<item id="nb_u">
 							<rank>80</rank>
 						</item>
