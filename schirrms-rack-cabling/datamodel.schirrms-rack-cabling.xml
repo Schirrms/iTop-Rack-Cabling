@@ -597,7 +597,7 @@
 						<item id="location_id">
 							<rank>15</rank>
 						</item>
-						<item id="color">
+						<item id="patchcablecolor_id">
 							<rank>30</rank>
 						</item>
 						<item id="length">
@@ -628,7 +628,7 @@
 						<item id="location_id">
 							<rank>15</rank>
 						</item>
-						<item id="color">
+						<item id="patchcablecolor_id">
 							<rank>30</rank>
 						</item>
 						<item id="length">
