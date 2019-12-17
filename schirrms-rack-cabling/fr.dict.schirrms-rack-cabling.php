@@ -11,6 +11,7 @@ Dict::Add('FR FR', 'French', 'Français', array(
 	'Class:GenericCommLayer1Interface/Attribute:cable_id' => 'Etiquette du câble',
 	'Class:GenericCommLayer1Interface/Attribute:cable_name' => 'Texte de l\'étiquette du câble',
 	'Class:GenericCommLayer1Interface/Attribute:cable_remote_port_id' => 'Port connecté au bout du câble',
+	'Class:PatchCable/Attribute:cable_remote_port_id_finalclass_recall' => 'Type du port au bout du câble',
 	'Class:GenericCommLayer1Interface/Attribute:cable_remote_port_name' => 'Nom du port connecté au bout du câble',
 	'Class:PatchPanel' => 'Panneau de brassage',
 	'Class:PatchPanel/Attribute:patchpanelport_list' => 'Ports sur ce panneau',
