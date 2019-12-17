@@ -267,6 +267,9 @@
 						<item id="cable_id">
 							<rank>60</rank>
 						</item>
+						<item id="cable_remote_port_id" _delta="define">
+							<rank>70</rank>
+						</item>
 					</items>
 				</list>
 			</presentation>
@@ -916,15 +919,15 @@
 						<item id="cable_id" _delta="define">
 							<rank>115</rank>
 						</item>
+						<item id="cable_remote_port_id" _delta="define">
+							<rank>118</rank>
+						</item>
 					</items>
 				</list>
 				<search>
 					<items>
 						<item id="cable_id" _delta="define">
 							<rank>115</rank>
-						</item>
-						<item id="cable_remote_port_id" _delta="define">
-							<rank>118</rank>
 						</item>
 					</items>
 				</search>
