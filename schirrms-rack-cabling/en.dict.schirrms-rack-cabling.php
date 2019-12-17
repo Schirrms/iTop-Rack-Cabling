@@ -11,7 +11,7 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:GenericCommLayer1Interface/Attribute:cable_id' => 'Cable Label',
 	'Class:GenericCommLayer1Interface/Attribute:cable_name' => 'Cable Label Name',
 	'Class:GenericCommLayer1Interface/Attribute:cable_remote_port_id' => 'Port on the end of the cable',
-	'Class:PatchCable/Attribute:cable_remote_port_id_finalclass_recall' => 'Other end port type',
+	'Class:GenericCommLayer1Interface/Attribute:cable_remote_port_id_finalclass_recall' => 'Other end port type',
 	'Class:GenericCommLayer1Interface/Attribute:cable_remote_port_name' => 'Name of the port on the end of the cable',
 	'Class:PatchPanel' => 'Patch Panel',
 	'Class:PatchPanel/Attribute:patchpanelport_list' => 'Ports on this panel',
