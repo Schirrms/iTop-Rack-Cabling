@@ -495,13 +495,23 @@
 					<extkey_attcode>physcommtype_a_id</extkey_attcode>
 					<target_attcode>name</target_attcode>
 				</field>
+				<field id="remote_a_ci_id" xsi:type="AttributeExternalKey">
+					<sql>remote_a_ci_id</sql>
+					<target_class>ConnectableCI</target_class>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+				</field>
+				<field id="remote_a_ci_name" xsi:type="AttributeExternalField">
+					<extkey_attcode>remote_a_ci_id</extkey_attcode>
+					<target_attcode>name</target_attcode>
+				</field>
 				<field id="remote_a_id" xsi:type="AttributeExternalKey">
 					<sql>remote_a_id</sql>
 					<target_class>GenericCommLayer1Interface</target_class>
 					<is_null_allowed>true</is_null_allowed>
 					<on_target_delete>DEL_MANUAL</on_target_delete>
-					<filter><![CDATA[SELECT PatchPanelPort WHERE  cable_id = '' AND physcommtype_id = :this->physcommtype_a_id UNION SELECT GenericCommPhysInterface WHERE  cable_id = '' AND physcommtype_id = :this->physcommtype_a_id]]></filter>
+					<filter><![CDATA[SELECT PatchPanelPort WHERE cable_id = '' AND physcommtype_id = :this->physcommtype_a_id AND connectableci_id = :this->remote_a_ci_id UNION SELECT GenericCommPhysInterface WHERE  cable_id = '' AND physcommtype_id = :this->physcommtype_a_id AND connectableci_id = :this->remote_a_ci_id]]></filter>
 					<dependencies>
+						<attribute id="remote_a_ci_id" />
 						<attribute id="physcommtype_a_id" />
 					</dependencies>
 				</field>
@@ -519,13 +529,23 @@
 					<extkey_attcode>physcommtype_b_id</extkey_attcode>
 					<target_attcode>name</target_attcode>
 				</field>
+				<field id="remote_b_ci_id" xsi:type="AttributeExternalKey">
+					<sql>remote_b_ci_id</sql>
+					<target_class>ConnectableCI</target_class>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+				</field>
+				<field id="remote_b_ci_name" xsi:type="AttributeExternalField">
+					<extkey_attcode>remote_a_ci_id</extkey_attcode>
+					<target_attcode>name</target_attcode>
+				</field>
 				<field id="remote_b_id" xsi:type="AttributeExternalKey">
 					<sql>remote_b_id</sql>
 					<target_class>GenericCommLayer1Interface</target_class>
 					<is_null_allowed>true</is_null_allowed>
 					<on_target_delete>DEL_MANUAL</on_target_delete>
-					<filter><![CDATA[SELECT PatchPanelPort WHERE  cable_id = '' AND physcommtype_id = :this->physcommtype_b_id UNION SELECT GenericCommPhysInterface WHERE  cable_id = '' AND physcommtype_id = :this->physcommtype_b_id]]></filter>
+					<filter><![CDATA[SELECT PatchPanelPort WHERE  cable_id = '' AND physcommtype_id = :this->physcommtype_b_id AND connectableci_id = :this->remote_b_ci_id UNION SELECT GenericCommPhysInterface WHERE  cable_id = '' AND physcommtype_id = :this->physcommtype_b_id AND connectableci_id = :this->remote_b_ci_id]]></filter>
 					<dependencies>
+						<attribute id="remote_b_ci_id" />
 						<attribute id="physcommtype_b_id" />
 					</dependencies>
 				</field>
@@ -578,14 +598,20 @@
 						<item id="physcommtype_a_id">
 							<rank>60</rank>
 						</item>
-						<item id="remote_a_id">
+						<item id="remote_a_ci_id">
 							<rank>70</rank>
 						</item>
-						<item id="physcommtype_b_id">
+						<item id="remote_a_id">
 							<rank>80</rank>
 						</item>
-						<item id="remote_b_id">
+						<item id="physcommtype_b_id">
 							<rank>90</rank>
+						</item>
+						<item id="remote_b_ci_id">
+							<rank>100</rank>
+						</item>
+						<item id="remote_b_id">
+							<rank>110</rank>
 						</item>
 					</items>
 				</details>
@@ -677,6 +703,8 @@
 									{
 										// print "Updating : '".$oConnection->Get('name')."'<br>";
 										$oConnection->Set('cable_id', $this->GetKey());
+										// set on each end the opposite end too
+										$oConnection->Set('cable_remote_port_id', $this->Get('remote_b_id'));
 										$oConnection->DBUpdate();
 									}
 								}
@@ -698,6 +726,8 @@
 									{
 										// print "Updating : '".$oConnection->Get('name')."'<br>";
 										$oConnection->Set('cable_id', $this->GetKey());
+										// set on each end the opposite end too
+										$oConnection->Set('cable_remote_port_id', $this->Get('remote_a_id'));
 										$oConnection->DBUpdate();
 									}
 								}
@@ -733,6 +763,7 @@
 									{
 										// print "Updating : '".$oConnection->Get('name')."'<br>";
 										$oConnection->Set('cable_id', '');
+										$oConnection->Set('cable_remote_port_id', '');
 										$oConnection->DBUpdate();
 									}
 								}
@@ -757,6 +788,7 @@
 									{
 										// print "Updating : '".$oConnection->Get('name')."'<br>";
 										$oConnection->Set('cable_id', '');
+										$oConnection->Set('cable_remote_port_id', '');
 										$oConnection->DBUpdate();
 									}
 								}
@@ -816,6 +848,18 @@
 					<extkey_attcode>cable_id</extkey_attcode>
 					<target_attcode>name</target_attcode>
 				</field>
+				<field id="cable_remote_port_id"  xsi:type="AttributeExternalKey" _delta="define">
+					<sql>cable_remote_port_id</sql>
+					<target_class>GenericCommLayer1Interface</target_class>
+					<is_null_allowed>true</is_null_allowed>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+					<filter/>
+					<dependencies/>
+				</field>
+				<field id="cable_remote_port_name" xsi:type="AttributeExternalField" _delta="define">
+					<extkey_attcode>cable_remote_port_id</extkey_attcode>
+					<target_attcode>name</target_attcode>
+				</field>
 			</fields>
 			<presentation>
 				<details>
@@ -823,12 +867,18 @@
 						<item id="cable_id" _delta="define">
 							<rank>120</rank>
 						</item>
+						<item id="cable_remote_port_id" _delta="define">
+							<rank>130</rank>
+						</item>
 					</items>
 				</details>
 				<list>
 					<items>
 						<item id="cable_id" _delta="define">
 							<rank>120</rank>
+						</item>
+						<item id="cable_remote_port_id" _delta="define">
+							<rank>130</rank>
 						</item>
 					</items>
 				</list>
