@@ -217,6 +217,9 @@
 						<item id="cable_id">
 							<rank>60</rank>
 						</item>
+						<item id="cable_remote_port_id" _delta="define">
+							<rank>70</rank>
+						</item>
 					</items>
 				</details>
 				<search>
@@ -238,6 +241,9 @@
 						</item>
 						<item id="cable_id">
 							<rank>60</rank>
+						</item>
+						<item id="cable_remote_port_id" _delta="define">
+							<rank>70</rank>
 						</item>
 					</items>
 				</search>
@@ -498,6 +504,7 @@
 				<field id="remote_a_ci_id" xsi:type="AttributeExternalKey">
 					<sql>remote_a_ci_id</sql>
 					<target_class>ConnectableCI</target_class>
+					<is_null_allowed>true</is_null_allowed>
 					<on_target_delete>DEL_AUTO</on_target_delete>
 				</field>
 				<field id="remote_a_ci_name" xsi:type="AttributeExternalField">
@@ -532,6 +539,7 @@
 				<field id="remote_b_ci_id" xsi:type="AttributeExternalKey">
 					<sql>remote_b_ci_id</sql>
 					<target_class>ConnectableCI</target_class>
+					<is_null_allowed>true</is_null_allowed>
 					<on_target_delete>DEL_AUTO</on_target_delete>
 				</field>
 				<field id="remote_b_ci_name" xsi:type="AttributeExternalField">
@@ -898,6 +906,9 @@
 						<item id="cable_id" _delta="define">
 							<rank>115</rank>
 						</item>
+						<item id="cable_remote_port_id" _delta="define">
+							<rank>118</rank>
+						</item>
 					</items>
 				</details>
 				<list>
@@ -911,6 +922,9 @@
 					<items>
 						<item id="cable_id" _delta="define">
 							<rank>115</rank>
+						</item>
+						<item id="cable_remote_port_id" _delta="define">
+							<rank>118</rank>
 						</item>
 					</items>
 				</search>
